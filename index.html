@@ -35,7 +35,7 @@
 
         /* Header */
         header {
-            padding: 25px 10%;
+            padding: 20px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -44,8 +44,14 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            flex-wrap: wrap; /* 모바일 대응 */
         }
-        .logo-area { display: flex; align-items: center; gap: 15px; }
+        .logo-area { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            white-space: nowrap; /* 글자 세로 쪼개짐 방지 */
+        }
         .logo-main { font-size: 24px; font-weight: 700; color: var(--omron-blue); letter-spacing: -0.5px; }
         .partner-tag { 
             font-size: 11px; 
@@ -54,22 +60,25 @@
             color: var(--omron-blue); 
             padding: 2px 8px;
             border-radius: 2px;
+            white-space: nowrap;
         }
 
+        nav { margin-left: auto; }
         nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 40px; }
+        nav ul li { margin-left: 25px; }
         nav ul li a { 
             text-decoration: none; 
             color: var(--text-dark); 
             font-weight: 500; 
-            font-size: 16px;
+            font-size: 15px;
             transition: 0.2s;
+            white-space: nowrap; /* 메뉴명 세로 쪼개짐 방지 */
         }
         nav ul li a:hover { color: var(--omron-blue); }
 
         /* Hero - OMRON Minimalist Style */
         .hero {
-            padding: 100px 10%;
+            padding: 80px 10%;
             background: #fff;
             display: flex;
             align-items: center;
@@ -96,7 +105,6 @@
             text-align: right;
             position: relative;
         }
-        /* Abstract technical pattern instead of human image */
         .hero-image svg { width: 80%; opacity: 0.1; position: absolute; right: 0; top: -100px; }
         
         .btn-primary {
@@ -111,7 +119,7 @@
         }
         .btn-primary:hover { background: #00468c; }
 
-        /* Product Categories Grid - Exactly like OMRON JP */
+        /* Product Categories Grid */
         .section-products { padding: 80px 10%; background: var(--bg-light); }
         .section-title { 
             font-size: 28px; 
@@ -124,7 +132,7 @@
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1px; /* Grid lines */
+            gap: 1px;
             background: var(--border);
             border: 1px solid var(--border);
         }
@@ -155,7 +163,7 @@
         .tech-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; font-weight: 500; }
         .tech-list li::before { content: '→'; color: var(--omron-blue); }
 
-        /* Contact Section - Clean & Direct */
+        /* Contact Section */
         .contact-banner {
             background: var(--omron-blue);
             color: #fff;
@@ -197,7 +205,34 @@
             justify-content: space-between;
         }
 
-        @media (max-width: 1024px) {
+        /* 반응형 최적화 */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+                flex-direction: column; /* 세로 배치 */
+                gap: 15px;
+                text-align: center;
+            }
+            .logo-area { width: 100%; justify-content: center; }
+            nav { margin: 0 auto; width: 100%; }
+            nav ul { justify-content: center; padding: 0; flex-wrap: wrap; }
+            nav ul li { margin: 5px 10px; }
+            nav ul li a { font-size: 14px; }
+            
+            .hero { padding: 40px 5%; min-height: auto; text-align: center; flex-direction: column; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { margin: 0 auto 30px; font-size: 1rem; }
+            .hero-image { display: none; }
+
+            .section-products { padding: 50px 5%; }
+            .section-title { font-size: 24px; }
+            .product-item { padding: 30px 20px; }
+
+            .tech-section { flex-direction: column; padding: 50px 5%; gap: 40px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
             .hero { flex-direction: column; text-align: center; padding-top: 60px; }
             .hero-image { display: none; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -234,7 +269,6 @@
             <a href="#products" class="btn-primary">제품 라인업 확인하기</a>
         </div>
         <div class="hero-image">
-            <!-- OMRON Style abstract vector graphic -->
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <path fill="#0059B3" d="M44.7,-76.4C58.1,-69.2,69.2,-58.1,76.4,-44.7C83.7,-31.3,87.1,-15.7,86.1,-0.6C85,14.5,79.5,29,71.2,41.4C62.9,53.8,51.8,64.1,38.8,71.1C25.8,78.1,12.9,81.8,-1.2,83.9C-15.3,85.9,-30.5,86.2,-44.1,80.1C-57.6,74,-69.5,61.5,-77.6,47.2C-85.7,33,-90.1,17,-89.2,1.3C-88.3,-14.4,-82.1,-29.8,-73.2,-43.3C-64.4,-56.8,-52.9,-68.4,-39.3,-75.4C-25.8,-82.4,-12.9,-84.8,1.4,-87.3C15.7,-89.8,31.3,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
             </svg>
@@ -269,6 +303,11 @@
                 <span class="cat-label" style="color: #00AEEF;">HMI & IPC</span>
                 <h3>HMI / 산업용 PC</h3>
                 <p>Pro-face의 세계적 표준 HMI(GP 시리즈) 및 고성능 산업용 PC(PS 시리즈) 솔루션</p>
+            </a>
+            <a href="#" class="product-item">
+                <span class="cat-label">COMPONENTS</span>
+                <h3>제어기기</h3>
+                <p>온도조절기, 타이머, 카운터, 전원 공급 장치(S8VK) 등 필수 제어 부품</p>
             </a>
         </div>
     </section>
