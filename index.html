@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서진산기(SJIM) | OMRON Authorized Partner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --omron-blue: #0059B3;
+            --text-dark: #222222;
+            --text-gray: #666666;
+            --bg-light: #f5f7f9;
+            --border: #e6e6e6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Noto Sans KR', 'Roboto', sans-serif; 
+            color: var(--text-dark); 
+            line-height: 1.6;
+            background-color: #ffffff;
+        }
+
+        /* Top Bar - OMRON Style Slim */
+        .top-nav {
+            border-bottom: 1px solid var(--border);
+            padding: 10px 10%;
+            display: flex;
+            justify-content: flex-end;
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+        .top-nav a { margin-left: 20px; text-decoration: none; color: inherit; }
+
+        /* Header */
+        header {
+            padding: 25px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        .logo-area { display: flex; align-items: center; gap: 15px; }
+        .logo-main { font-size: 24px; font-weight: 700; color: var(--omron-blue); letter-spacing: -0.5px; }
+        .partner-tag { 
+            font-size: 11px; 
+            font-weight: 700; 
+            border: 1px solid var(--omron-blue); 
+            color: var(--omron-blue); 
+            padding: 2px 8px;
+            border-radius: 2px;
+        }
+
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 40px; }
+        nav ul li a { 
+            text-decoration: none; 
+            color: var(--text-dark); 
+            font-weight: 500; 
+            font-size: 16px;
+            transition: 0.2s;
+        }
+        nav ul li a:hover { color: var(--omron-blue); }
+
+        /* Hero - OMRON Minimalist Style */
+        .hero {
+            padding: 100px 10%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 500px;
+            border-bottom: 1px solid var(--border);
+        }
+        .hero-content { flex: 1; }
+        .hero-content h1 { 
+            font-size: 3.5rem; 
+            line-height: 1.1; 
+            margin-bottom: 30px; 
+            color: var(--omron-blue);
+            font-weight: 700;
+        }
+        .hero-content p { 
+            font-size: 1.2rem; 
+            color: var(--text-gray); 
+            max-width: 500px; 
+            margin-bottom: 40px; 
+        }
+        .hero-image { 
+            flex: 1; 
+            text-align: right;
+            position: relative;
+        }
+        /* Abstract technical pattern instead of human image */
+        .hero-image svg { width: 80%; opacity: 0.1; position: absolute; right: 0; top: -100px; }
+        
+        .btn-primary {
+            display: inline-block;
+            background: var(--omron-blue);
+            color: #fff;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 0;
+            transition: 0.3s;
+        }
+        .btn-primary:hover { background: #00468c; }
+
+        /* Product Categories Grid - Exactly like OMRON JP */
+        .section-products { padding: 80px 10%; background: var(--bg-light); }
+        .section-title { 
+            font-size: 28px; 
+            margin-bottom: 50px; 
+            font-weight: 700; 
+            border-left: 5px solid var(--omron-blue);
+            padding-left: 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px; /* Grid lines */
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+        .product-item {
+            background: #fff;
+            padding: 40px;
+            transition: 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .product-item:hover { background: #f0f4f8; }
+        .product-item .cat-label { 
+            font-size: 12px; 
+            color: var(--omron-blue); 
+            font-weight: 700; 
+            display: block; 
+            margin-bottom: 15px; 
+        }
+        .product-item h3 { font-size: 20px; margin-bottom: 15px; font-weight: 500; }
+        .product-item p { font-size: 14px; color: var(--text-gray); line-height: 1.5; }
+
+        /* Technology Section */
+        .tech-section { padding: 80px 10%; display: flex; gap: 80px; align-items: center; }
+        .tech-text { flex: 1; }
+        .tech-text h2 { font-size: 32px; margin-bottom: 25px; color: var(--omron-blue); }
+        .tech-text p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px; }
+        .tech-list { list-style: none; }
+        .tech-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; font-weight: 500; }
+        .tech-list li::before { content: '→'; color: var(--omron-blue); }
+
+        /* Contact Section - Clean & Direct */
+        .contact-banner {
+            background: var(--omron-blue);
+            color: #fff;
+            padding: 60px 10%;
+            text-align: center;
+        }
+        .contact-banner h2 { font-size: 30px; margin-bottom: 20px; }
+        .contact-banner .btn-white {
+            display: inline-block;
+            background: #fff;
+            color: var(--omron-blue);
+            padding: 15px 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer { padding: 80px 10% 40px; background: #fff; border-top: 1px solid var(--border); }
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 50px; 
+            margin-bottom: 60px; 
+        }
+        .footer-logo { font-size: 20px; font-weight: 700; color: var(--omron-blue); margin-bottom: 20px; }
+        .footer-col h4 { font-size: 16px; margin-bottom: 25px; font-weight: 700; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; font-size: 14px; }
+        .footer-col ul li a { text-decoration: none; color: var(--text-gray); }
+        .footer-col ul li a:hover { color: var(--omron-blue); }
+
+        .copyright { 
+            padding-top: 30px; 
+            border-top: 1px solid var(--border); 
+            font-size: 12px; 
+            color: #999;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 1024px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 60px; }
+            .hero-image { display: none; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <a href="#">GLOBAL</a>
+        <a href="#">KOREA</a>
+        <a href="#">SITEMAP</a>
+    </div>
+
+    <header>
+        <div class="logo-area">
+            <div class="logo-main">SEOJIN SAN-GI</div>
+            <div class="partner-tag">AUTHORIZED PARTNER</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">기업정보</a></li>
+                <li><a href="#products">제품정보</a></li>
+                <li><a href="#solutions">솔루션</a></li>
+                <li><a href="#support">기술지원</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Sensing &<br>Control<br>+ Think</h1>
+            <p>서진산기는 OMRON의 혁신적인 기술력을 바탕으로 대한민국의 스마트 팩토리를 선도하는 최적의 자동화 솔루션을 공급합니다.</p>
+            <a href="#products" class="btn-primary">제품 라인업 확인하기</a>
+        </div>
+        <div class="hero-image">
+            <!-- OMRON Style abstract vector graphic -->
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#0059B3" d="M44.7,-76.4C58.1,-69.2,69.2,-58.1,76.4,-44.7C83.7,-31.3,87.1,-15.7,86.1,-0.6C85,14.5,79.5,29,71.2,41.4C62.9,53.8,51.8,64.1,38.8,71.1C25.8,78.1,12.9,81.8,-1.2,83.9C-15.3,85.9,-30.5,86.2,-44.1,80.1C-57.6,74,-69.5,61.5,-77.6,47.2C-85.7,33,-90.1,17,-89.2,1.3C-88.3,-14.4,-82.1,-29.8,-73.2,-43.3C-64.4,-56.8,-52.9,-68.4,-39.3,-75.4C-25.8,-82.4,-12.9,-84.8,1.4,-87.3C15.7,-89.8,31.3,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
+            </svg>
+            <div style="font-size: 180px; color: #f0f4f8; font-weight: 900; line-height: 1;">FA</div>
+        </div>
+    </section>
+
+    <section id="products" class="section-products">
+        <h2 class="section-title">Product Categories</h2>
+        <div class="product-grid">
+            <a href="#" class="product-item">
+                <span class="cat-label">SENSORS</span>
+                <h3>센서</h3>
+                <p>광전센서, 근접센서, 파이버센서 등 공정의 눈이 되는 최첨단 감지 솔루션</p>
+            </a>
+            <a href="#" class="product-item">
+                <span class="cat-label">SWITCHES</span>
+                <h3>스위치</h3>
+                <p>버튼 스위치, 리미트 스위치, 딥 스위치 등 신뢰성 높은 제어 입력 기기</p>
+            </a>
+            <a href="#" class="product-item">
+                <span class="cat-label">RELAYS</span>
+                <h3>릴레이</h3>
+                <p>범용 릴레이, 터미널 릴레이, SSR 등 안정적인 신호 전달의 핵심 부품</p>
+            </a>
+            <a href="#" class="product-item">
+                <span class="cat-label">AUTOMATION</span>
+                <h3>자동화 시스템</h3>
+                <p>PLC, HMI, 인버터 및 서보 시스템 등 스마트 공정 통합 제어 솔루션</p>
+            </a>
+            <a href="#" class="product-item">
+                <span class="cat-label">SAFETY</span>
+                <h3>세이프티</h3>
+                <p>라이트 커튼, 안전 스위치 등 국제 규격에 부합하는 산업 안전 시스템</p>
+            </div>
+            <a href="#" class="product-item">
+                <span class="cat-label">COMPONENTS</span>
+                <h3>제어기기</h3>
+                <p>온도조절기, 타이머, 카운터, 전원 공급 장치(S8VK) 등 필수 제어 부품</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="tech-section">
+        <div class="tech-text">
+            <h2>OMRON's Core Value</h2>
+            <p>서진산기는 '기계가 할 수 있는 일은 기계에게, 인간은 보다 창조적인 활동을 즐기는 세계를'이라는 오므론의 기업 이념을 실현합니다.</p>
+            <ul class="tech-list">
+                <li>독보적인 Sensing & Control 기술 기반 솔루션</li>
+                <li>고객사별 맞춤형 기술 상담 및 최적 부품 제안</li>
+                <li>신속한 재고 파악 및 적기 납기 시스템 운영</li>
+                <li>철저한 사후 기술 지원 및 교육 서비스</li>
+            </ul>
+        </div>
+        <div style="flex: 1; background: var(--bg-light); padding: 50px; text-align: center;">
+            <div style="font-size: 60px; color: var(--omron-blue); font-weight: 700;">+Think</div>
+            <p style="margin-top: 20px; color: var(--text-gray);">Intelligence for Manufacturing</p>
+        </div>
+    </section>
+
+    <div class="contact-banner">
+        <h2>부품 재고 확인 및 기술 상담</h2>
+        <p>오므론 전 제품 라인업에 대한 견적 및 기술 문의를 지금 바로 신청하세요.</p>
+        <a href="mailto:master@sjim.co.kr" class="btn-white">견적 요청 / 문의하기</a>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">SEOJIN SAN-GI</div>
+                <p style="font-size: 14px; color: #666; margin-bottom: 20px;">서진산기는 OMRON의 공식 파트너로서<br>최고의 자동화 부품과 기술 서비스를 제공합니다.</p>
+                
+                <div style="margin-top: 30px;">
+                    <h5 style="color: var(--omron-blue); margin-bottom: 10px; font-size: 14px;">[본사]</h5>
+                    <p style="font-size: 13px; margin-bottom: 5px;">경기도 안양시 동안구 호계동 555-9</p>
+                    <p style="font-size: 13px; margin-bottom: 5px;">T. 031-479-0730 | F. 031-479-0018</p>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <h5 style="color: var(--omron-blue); margin-bottom: 10px; font-size: 14px;">[구미 사업소]</h5>
+                    <p style="font-size: 13px; margin-bottom: 5px;">경북 구미시 3공단1로 302-7 공구상가 1동 110호</p>
+                    <p style="font-size: 13px; margin-bottom: 5px;">T. 054-475-6565 | F. 054-476-6567</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#">센서 (Sensors)</a></li>
+                    <li><a href="#">제어기기 (Components)</a></li>
+                    <li><a href="#">스위치/릴레이 (Switches/Relays)</a></li>
+                    <li><a href="#">자동화/구동기기 (Automation)</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">기술 자료실</a></li>
+                    <li><a href="#">카탈로그 다운로드</a></li>
+                    <li><a href="#">온라인 견적 문의</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">회사소개</a></li>
+                    <li><a href="#">오시는 길</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div>&copy; 2026 SEOJIN SAN-GI. All Rights Reserved.</div>
+            <div>Authorized Partner of OMRON KOREA</div>
+        </div>
+    </footer>
+
+</body>
+</html>
